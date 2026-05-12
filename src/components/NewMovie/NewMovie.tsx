@@ -24,10 +24,15 @@ export const NewMovie = ({ onAdd }: Props) => {
   const button =
     title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onAdd({ title, description, imgUrl, imdbUrl, imdbId });
+  const handleSubmit = (canSubmit: React.FormEvent) => {
+    canSubmit.preventDefault();
+    setTitle('');
+    setDescription('');
+    setImgUrl('');
+    setImdbUrl('');
+    setImdbId('');
     setCount(count + 1);
+    onAdd({ title, description, imgUrl, imdbUrl, imdbId });
   };
 
   return (
