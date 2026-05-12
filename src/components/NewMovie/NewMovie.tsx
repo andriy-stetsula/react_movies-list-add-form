@@ -21,7 +21,7 @@ export const NewMovie = ({ onAdd }: Props) => {
   const [imdbUrl, setImdbUrl] = useState('');
   const [imdbId, setImdbId] = useState('');
 
-  const button =
+  const isFormValid =
     title.trim() && imgUrl.trim() && imdbUrl.trim() && imdbId.trim();
 
   const handleSubmit = (canSubmit: React.FormEvent) => {
@@ -32,8 +32,9 @@ export const NewMovie = ({ onAdd }: Props) => {
     setImdbUrl('');
     setImdbId('');
     setCount(count + 1);
-    onAdd({ title, description, imgUrl, imdbUrl, imdbId });
   };
+
+  onAdd({ title, description, imgUrl, imdbUrl, imdbId });
 
   return (
     <form className="NewMovie" key={count} onSubmit={handleSubmit}>
@@ -84,7 +85,7 @@ export const NewMovie = ({ onAdd }: Props) => {
             type="submit"
             data-cy="submit-button"
             className="button is-link"
-            disabled={!button}
+            disabled={!isFormValid}
           >
             Add
           </button>
